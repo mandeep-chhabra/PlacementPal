@@ -1,5 +1,4 @@
-Markdown
-
+````
 # 🎓✨ PlacementPal - Your Smart Placement Reminder Assistant ✨🎓
 
 **🚀 Never miss an opportunity – PlacementPal fetches placement-related emails, lets you approve them, and creates reminders on Google Calendar with Telegram notifications.**
@@ -64,99 +63,126 @@ Markdown
 ```bash
 git clone [https://github.com/your-username/PlacementPal.git](https://github.com/your-username/PlacementPal.git)
 cd PlacementPal
-🔹 Option A: Python Implementation
-2. Setup Virtual Environment
-Bash
+````
 
+### 🔹 Option A: Python Implementation
+
+### 2\. Setup Virtual Environment
+
+```bash
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
-3. Install Dependencies
-Bash
+```
 
+### 3\. Install Dependencies
+
+```bash
 pip install -r requirements.txt
-4. Setup Google APIs
-Go to Google Cloud Console
+```
 
-Enable Gmail API & Google Calendar API
+### 4\. Setup Google APIs
 
-Create OAuth credentials → Download credentials.json
+  - Go to **Google Cloud Console**
+  - Enable **Gmail API & Google Calendar API**
+  - Create **OAuth credentials → Download credentials.json**
+  - Place it inside project root
 
-Place it inside project root
+### 5\. Run the Bot
 
-5. Run the Bot
-Bash
-
+```bash
 python placementpal.py
-🔹 Option B: n8n Workflow
-2. Install n8n
-Bash
+```
 
+-----
+
+### 🔹 Option B: n8n Workflow
+
+### 2\. Install n8n
+
+```bash
 npm install n8n -g
-3. Start n8n
-Bash
+```
 
+### 3\. Start n8n
+
+```bash
 n8n start
-4. Import Workflow
-Open http://localhost:5678
+```
 
-Import the provided PlacementPal-n8n.json
+### 4\. Import Workflow
 
-Add your Gmail & Telegram credentials in n8n Settings → Credentials
+  - Open `http://localhost:5678`
+  - Import the provided `PlacementPal-n8n.json`
+  - Add your Gmail & Telegram credentials in `n8n Settings → Credentials`
 
-⚙️ Environment Variables
-Create a .env file for Python bot:
+-----
 
-Code snippet
+### ⚙️ Environment Variables
 
+Create a `.env` file for Python bot:
+
+```env
 TELEGRAM_BOT_TOKEN=your_bot_token_here
 TELEGRAM_CHAT_ID=your_chat_id_here
+```
+
 For n8n, set credentials via UI.
 
-📸 Demo Flow
-Gmail → Fetch placement email
+-----
 
-Telegram → Bot sends message with Approve button
+### 📸 Demo Flow
 
-On approval → Event gets added to Google Calendar
+  - **Gmail** → Fetch placement email
+  - **Telegram** → Bot sends message with **Approve** button
+  - On approval → Event gets added to **Google Calendar**
+  - **Telegram** sends reminder before deadline
 
-Telegram sends reminder before deadline
+\<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"\>
 
-<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+-----
 
-⚠️ Troubleshooting
-Gmail not fetching emails
+### ⚠️ Troubleshooting
 
-Ensure Gmail API enabled & valid OAuth credentials.
+  - **Gmail not fetching emails**
+      - Ensure Gmail API enabled & valid OAuth credentials.
+      - Delete `token.json` and re-run for fresh authorization.
+  - **Telegram not sending messages**
+      - Verify Bot Token & Chat ID.
+      - Use `/start` in Telegram to activate the bot.
+  - **n8n Workflow Error**
+      - Double-check credentials are assigned.
+      - Ensure workflow is activated after testing.
 
-Delete token.json and re-run for fresh authorization.
+-----
 
-Telegram not sending messages
+### 📊 Project Status
 
-Verify Bot Token & Chat ID.
-
-Use /start in Telegram to activate the bot.
-
-n8n Workflow Error
-
-Double-check credentials are assigned.
-
-Ensure workflow is activated after testing.
-
-📊 Project Status
 ✅ Gmail + Calendar Bot ready
 ✅ Telegram Approvals working
 ✅ n8n Workflow tested
 🚧 Future: Slack / WhatsApp integration
 
-🏷️ Badges
+-----
+
+### 🏷️ Badges
+
 (Image of badges would be here)
 
-👨‍💻 Author
+-----
+
+### 👨‍💻 Author
+
 Mandeep Singh Chhabra
 📍 Indore, India
 🔗 LinkedIn | GitHub
 
-📜 License
+-----
+
+### 📜 License
+
 This project is licensed under the MIT License – see the LICENSE file for details.
 
-<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+\<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"\>
+
+```
+```
