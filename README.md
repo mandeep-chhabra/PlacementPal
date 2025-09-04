@@ -126,8 +126,6 @@ TELEGRAM_BOT_TOKEN=your_bot_token_here
 TELEGRAM_CHAT_ID=your_chat_id_here
 ```
 
-For n8n, set credentials via UI.
-
 -----
 
 ### 📸 Demo Flow
@@ -136,8 +134,6 @@ For n8n, set credentials via UI.
   - **Telegram** → Bot sends message with **Approve** button
   - On approval → Event gets added to **Google Calendar**
   - **Telegram** sends reminder before deadline
-
-\<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"\>
 
 -----
 
@@ -164,16 +160,9 @@ For n8n, set credentials via UI.
 
 -----
 
-### 🏷️ Badges
-
-(Image of badges would be here)
-
------
-
 ### 👨‍💻 Author
 
 Mandeep Singh Chhabra
-📍 Indore, India
 🔗 LinkedIn | GitHub
 
 -----
@@ -182,7 +171,6 @@ Mandeep Singh Chhabra
 
 This project is licensed under the MIT License – see the LICENSE file for details.
 
-\<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900"\>
 
 ```
 ```
