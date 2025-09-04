@@ -1,4 +1,4 @@
-````
+
 # 🎓✨ PlacementPal - Your Smart Placement Reminder Assistant ✨🎓
 
 **🚀 Never miss an opportunity – PlacementPal fetches placement-related emails, lets you approve them, and creates reminders on Google Calendar with Telegram notifications.**
