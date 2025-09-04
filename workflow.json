@@ -1,0 +1,167 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "triggerOn": "newEmail",
+                "label": "New Email",
+                "additionalFields": {}
+            },
+            "id": "1",
+            "name": "Gmail Trigger",
+            "type": "n8n-nodes-base.gmailTrigger",
+            "typeVersion": 1,
+            "position": [250, 250],
+            "credentials": {
+                "gmailOAuth2": "Gmail account"
+            }
+        },
+        {
+            "parameters": {
+                "chatId": "1228212476",
+                "text": "New Email Received:\nSubject: {{$json[\"subject\"]}}\nFrom: {{$json[\"from\"]}}\n\nDo you want to add this to Calendar?",
+                "additionalFields": {
+                    "replyMarkup": {
+                        "inline_keyboard": [
+                            [
+                                {
+                                    "text": "✅ Approve",
+                                    "callback_data": "approve"
+                                },
+                                {
+                                    "text": "❌ Reject",
+                                    "callback_data": "reject"
+                                }
+                            ]
+                        ]
+                    }
+                }
+            },
+            "id": "2",
+            "name": "Send Telegram Approval",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [550, 250],
+            "credentials": {
+                "telegramApi": "Telegram account 2"
+            }
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{$json[\"callback_query\"][\"data\"]}}",
+                            "operation": "equal",
+                            "value2": "approve"
+                        }
+                    ]
+                }
+            },
+            "id": "3",
+            "name": "If Approved",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [850, 250]
+        },
+        {
+            "parameters": {
+                "calendar": "primary",
+                "start": "={{$json[\"date\"]}}",
+                "end": "={{$json[\"date\"]}}",
+                "summary": "={{$json[\"subject\"]}}",
+                "description": "Email from {{$json[\"from\"]}}"
+            },
+            "id": "4",
+            "name": "Add to Calendar",
+            "type": "n8n-nodes-base.googleCalendar",
+            "typeVersion": 1,
+            "position": [1150, 200],
+            "credentials": {
+                "googleCalendarOAuth2": "Google Calendar account 2"
+            }
+        },
+        {
+            "parameters": {
+                "amount": 15,
+                "unit": "minutes",
+                "field": "start"
+            },
+            "id": "5",
+            "name": "Wait Until 15 Min Before",
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1,
+            "position": [1150, 400]
+        },
+        {
+            "parameters": {
+                "chatId": "YOUR_TELEGRAM_CHAT_ID",
+                "text": "Reminder ⏰\nUpcoming Event: {{$json[\"summary\"]}}\nStarts at {{$json[\"start\"]}}"
+            },
+            "id": "6",
+            "name": "Send Telegram Reminder",
+            "type": "n8n-nodes-base.telegram",
+            "typeVersion": 1,
+            "position": [1450, 400],
+            "credentials": {
+                "telegramApi": "Telegram account 2"
+            }
+        }
+    ],
+    "connections": {
+        "Gmail Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Send Telegram Approval",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Send Telegram Approval": {
+            "main": [
+                [
+                    {
+                        "node": "If Approved",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "If Approved": {
+            "main": [
+                [
+                    {
+                        "node": "Add to Calendar",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Add to Calendar": {
+            "main": [
+                [
+                    {
+                        "node": "Wait Until 15 Min Before",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Wait Until 15 Min Before": {
+            "main": [
+                [
+                    {
+                        "node": "Send Telegram Reminder",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
